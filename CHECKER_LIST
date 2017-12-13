@@ -107,6 +107,7 @@ preferFseekToRewind
 preferSetvbufToSetbuf
 protectVirtualMethods
 pushBack
+readBufferOverflow
 rightShiftMask
 setNullAfterFree
 setPointersToNull

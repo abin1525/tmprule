@@ -1,5 +1,6 @@
-+:InitToNull
-+:SetNullAfterFree
++:ReadBufferOverflow
+-:InitToNull
+-:SetNullAfterFree
 -:CharVarWithCPrefix
 -:MultipleBreakInLoop
 -:EmptyStatment
