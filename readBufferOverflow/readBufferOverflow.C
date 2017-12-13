@@ -177,6 +177,20 @@ void CompassAnalyses::ReadBufferOverflow::Traversal::visit(SgNode* node) {
 
 		SgPntrArrRefExp* pntr = isSgPntrArrRefExp(next);
 		if (pntr) {
+			SgNode* Parent = pntr->get_parent();
+			if (!Parent)
+				continue;
+			SgAssignInitializer* parentInit = isSgAssignInitializer(Parent);
+			SgNode* FirstChild = pntr;
+			SgAssignOp* parentAssign = isSgAssignOp(Parent);
+			if (parentAssign) {
+				size_t ChildCnt =
+						parentAssign->get_numberOfTraversalSuccessors();
+				FirstChild = parentAssign->get_traversalSuccessorByIndex(0);
+			}
+			if (!parentInit && FirstChild == pntr)
+				continue;
+
 			SgVarRefExp* leftVar = isSgVarRefExp(pntr->get_lhs_operand());
 			SgInitializedName* initVar = NULL;
 			if (leftVar) {
